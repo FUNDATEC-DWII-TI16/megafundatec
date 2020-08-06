@@ -1,0 +1,12 @@
+OK -Renderizar os números 01 - 60 em forma de bolinhas, idealmente em linhas de 10 bolinhas;
+
+OK -Permitir que o usuário possa marcar as bolinhas - OK
+	-A medida que o usuário marca as bolinhas, precisamos deixar claro que o número está marcado; - OK
+	-O usuário pode a qualquer momento desmarcar uma dezena - OK
+
+OK -Estipular o limite máximo de 6 bolinhas marcadas;
+
+OK -Botão para o usuário confirmar o jogo:
+	OK -Validação de pelo menos 6 dezenas selecionadas;
+
+OK -Renderização das dezenas marcadas de forma inline (dezenas separadas por traços ou hífens);
