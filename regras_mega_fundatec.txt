@@ -1,3 +1,5 @@
+AULA 1:
+
 OK -Renderizar os números 01 - 60 em forma de bolinhas, idealmente em linhas de 10 bolinhas;
 
 OK -Permitir que o usuário possa marcar as bolinhas - OK
@@ -10,3 +12,16 @@ OK -Botão para o usuário confirmar o jogo:
 	OK -Validação de pelo menos 6 dezenas selecionadas;
 
 OK -Renderização das dezenas marcadas de forma inline (dezenas separadas por traços ou hífens);
+
+
+AULA 2:
+
+OK -Permitir jogos até o limite da mega-sena
+OK	-mostrar valor em tempo real e identificação do tipo de jogo
+-sessionStorage;
+-navegação:
+    -ir para pagina de pagamento
+        -chamar api para gravar o jogo
+    -página de jogo feito com sucesso
+    -página de jogos já realizado
+        -chamar api para listar jogos já realizados

@@ -21,11 +21,50 @@
     <div class="resumo-jogo">
       {{ resumoDoJogo }}
     </div>
-    <button type="button" @click="confirmarJogo">Confirmar Jogo</button>
+    <div v-if="possuiQuantidadeMinimaDeDezenas" class="valor-jogo">
+      <hr />
+      <h3>Valor do Jogo: {{ formataValor(valorAposta) }}</h3>
+    </div>
+    <button
+      type="button"
+      class="btn btn-primary"
+      v-if="possuiQuantidadeMinimaDeDezenas"
+      @click="confirmarJogo"
+    >
+      Confirmar Jogo
+    </button>
   </div>
 </template>
 
 <script>
+import numeral from "numeral";
+
+numeral.register("locale", "pt", {
+  delimiters: {
+    thousands: ".",
+    decimal: ",",
+  },
+  currency: {
+    symbol: "R$",
+  },
+});
+
+// switch between locales
+numeral.locale("pt");
+
+const precosAposta = [
+  { dezenas: 6, preco: 4.5 },
+  { dezenas: 7, preco: 31.5 },
+  { dezenas: 8, preco: 126 },
+  { dezenas: 9, preco: 378 },
+  { dezenas: 10, preco: 945 },
+  { dezenas: 11, preco: 2079 },
+  { dezenas: 12, preco: 4158 },
+  { dezenas: 13, preco: 7722 },
+  { dezenas: 14, preco: 13513.5 },
+  { dezenas: 15, preco: 22522.5 },
+];
+
 export default {
   data() {
     return {
@@ -48,6 +87,22 @@ export default {
         .join("-");
 
       return "Você jogou as seguintes dezenas: " + dezenaOrdenadasEFormatas;
+    },
+    valorAposta() {
+      let quantidadeDezenasAtualDoJogo = this.dezenasMarcadas.length;
+
+      let precoDoJogo = precosAposta.find((preco) => {
+        return preco.dezenas === quantidadeDezenasAtualDoJogo;
+      });
+
+      if (precoDoJogo === undefined) {
+        return null;
+      }
+
+      return precoDoJogo.preco;
+    },
+    possuiQuantidadeMinimaDeDezenas() {
+      return this.valorAposta !== null;
     },
   },
   methods: {
@@ -74,7 +129,7 @@ export default {
       this.dezenasMarcadas = this.dezenasMarcadas.filter((dm) => dm !== dezena);
     },
     marcaDezena(dezena) {
-      if (this.dezenasMarcadas.length >= 6) return;
+      if (this.dezenasMarcadas.length >= 15) return;
 
       //adiciona dezena nas marcadas
       this.dezenasMarcadas.push(dezena);
@@ -83,6 +138,9 @@ export default {
       if (dezena < 10) return "0" + dezena;
 
       return dezena;
+    },
+    formataValor(valor) {
+      return numeral(valor).format("$ 0,0.00");
     },
     obterDezenasDoGrupo(grupoDezena) {
       if (grupoDezena === 0)
