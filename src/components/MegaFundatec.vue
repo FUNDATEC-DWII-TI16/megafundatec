@@ -112,7 +112,13 @@ export default {
         return;
       }
 
-      alert("Jogo efetuado, boa sorte! Não esqueça de guardar seu canhoto");
+      let dadosPagamento = {
+        dezenas: this.dezenasMarcadas,
+        valor: this.valorAposta,
+      };
+
+      sessionStorage.setItem("dadosPagamento", JSON.stringify(dadosPagamento));
+      this.$router.push("/pagamento");
     },
     dezenaJaEstaMarcada(dezena) {
       return this.dezenasMarcadas.filter((dm) => dm === dezena).length > 0;

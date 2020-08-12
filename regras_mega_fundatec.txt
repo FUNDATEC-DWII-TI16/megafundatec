@@ -18,9 +18,9 @@ AULA 2:
 
 OK -Permitir jogos até o limite da mega-sena
 OK	-mostrar valor em tempo real e identificação do tipo de jogo
--sessionStorage;
--navegação:
-    -ir para pagina de pagamento
+OK -sessionStorage;
+OK -navegação:
+    OK -ir para pagina de pagamento
         -chamar api para gravar o jogo
     -página de jogo feito com sucesso
     -página de jogos já realizado
